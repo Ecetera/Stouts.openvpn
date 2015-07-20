@@ -1,0 +1,7 @@
+---
+openvpn_service_name: openvpn@server
+openvpn_user: nobody
+openvpn_group: nobody
+openvpn_use_pam_plugin_distribution: /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so
+openvpn_use_ldap_plugin_distribution: 
+

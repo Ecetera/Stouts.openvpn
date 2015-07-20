@@ -1,3 +1,19 @@
 ---
+- name: Enable EPEL
+  yum:
+    name: epel-release
+    state: present
 
-- fail: msg="RedHat is not supported now"
+- name: Enable OpenVPN
+  yum:
+    name: openvpn
+    state: present
+
+- name: Enable firewalld ports
+  firewalld:
+    service: openvpn
+    permanent: true
+    state: enabled
+  notify:
+    - restart firewalld
+# - fail: msg="RedHat is not supported now"
