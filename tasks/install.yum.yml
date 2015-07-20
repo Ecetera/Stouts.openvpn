@@ -9,6 +9,21 @@
     name: openvpn
     state: present
 
+- name: Enable ipv4 ipforward
+  sysctl:
+    name: "net.ipv4.ip_forward"
+    value: 1
+    sysctl_set: yes
+    state: present
+
+- name: Enable firewalld masquerade
+  firewalld:
+    rich_rule: 'rule masquerade'
+    permanent: true
+    state: enabled
+  notify:
+    - restart firewalld
+
 - name: Enable firewalld ports
   firewalld:
     service: openvpn
@@ -16,4 +31,5 @@
     state: enabled
   notify:
     - restart firewalld
+
 # - fail: msg="RedHat is not supported now"
